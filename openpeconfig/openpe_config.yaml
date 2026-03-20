@@ -1,0 +1,23 @@
+l3vnis:
+  - vrf: red
+    vni: 100
+    vxlanport: 4789
+l2vnis:
+  - vni: 210
+    vrf: red
+    vxlanport: 4789
+    l2gatewayips:
+      - "192.168.110.1/24"
+    hostmaster:
+      type: linux-bridge
+      linuxBridge:
+        name: br0
+underlays:
+  - asn: 64514
+    evpn:
+      vtepcidr: 100.65.0.0/24
+    nics:
+      - enp2s0
+    neighbors:
+      - asn: 64512
+        address: 192.168.111.1
