@@ -1,0 +1,13 @@
+apiVersion: v1beta1
+kind: ApplianceConfig
+ocpRelease:
+  version: "4.20"
+  url: quay.io/openshift-release-dev/ocp-release@sha256:5e2fb7977a82237e497443e2bb53fd1c196e083fc5095294699399b61ce02746
+diskSizeGB: 200
+pullSecret: XXXXX
+sshKey: XXX
+userCorePass: core
+stopLocalRegistry: false
+additionalImages:
+  - name: quay.io/fpaoline/router:dev4
+  - name: quay.io/mavazque/ign-converter:latest

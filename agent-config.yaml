@@ -1,0 +1,170 @@
+apiVersion: v1alpha1
+metadata:
+  name: sno-lab
+  namespace: cluster0
+additionalNTPSources:
+- 192.168.111.1
+rendezvousIP: 192.168.110.2
+hosts:
+- hostname: master-0
+  interfaces:
+  - name: enp2s0
+    macAddress: 00:0b:d5:06:26:b2
+  - name: eth1
+    macAddress: 00:0b:d5:06:26:b3
+  networkConfig:
+    interfaces:
+    - name: enp2s0
+      type: ethernet
+      state: up
+      mac-address: 00:0b:d5:06:26:b2
+      ipv4:
+        enabled: true
+        address:
+        - ip: 192.168.111.80
+          prefix-length: 24
+        dhcp: false
+    - name: enp1s0
+      type: ethernet
+      state: up
+      ipv4:
+        enabled: false
+      ipv6:
+        enabled: false
+    - name: dummy0
+      type: dummy
+      state: up
+      ipv4:
+        enabled: false
+      ipv6:
+        enabled: false
+    - name: br0
+      type: linux-bridge
+      state: up
+      ipv4:
+        enabled: true
+        address:
+        - ip: 192.168.110.2
+          prefix-length: 24
+        dhcp: false
+      bridge:
+        port:
+        - name: dummy0
+    dns-resolver:
+      config:
+        server:
+        - 192.168.110.1
+    routes:
+      config:
+      - destination: 0.0.0.0/0
+        next-hop-address: 192.168.110.1
+        next-hop-interface: br0
+        table-id: 254
+- hostname: master-1
+  interfaces:
+  - name: enp2s0
+    macAddress: 00:0b:d5:06:26:b5
+  - name: eth1
+    macAddress: 00:0b:d5:06:26:b6
+  networkConfig:
+    interfaces:
+    - name: enp2s0
+      type: ethernet
+      state: up
+      mac-address: 00:0b:d5:06:26:b5
+      ipv4:
+        enabled: true
+        address:
+        - ip: 192.168.111.81
+          prefix-length: 24
+        dhcp: false
+    - name: enp1s0
+      type: ethernet
+      state: up
+      ipv4:
+        enabled: false
+      ipv6:
+        enabled: false
+    - name: dummy0
+      type: dummy
+      state: up
+      ipv4:
+        enabled: false
+      ipv6:
+        enabled: false
+    - name: br0
+      type: linux-bridge
+      state: up
+      ipv4:
+        enabled: true
+        address:
+        - ip: 192.168.110.3
+          prefix-length: 24
+        dhcp: false
+      bridge:
+        port:
+        - name: dummy0
+    dns-resolver:
+      config:
+        server:
+        - 192.168.110.1
+    routes:
+      config:
+      - destination: 0.0.0.0/0
+        next-hop-address: 192.168.110.1
+        next-hop-interface: br0
+        table-id: 254
+- hostname: master-2
+  interfaces:
+  - name: enp2s0
+    macAddress: 00:0b:d5:06:26:b8
+  - name: eth1
+    macAddress: 00:0b:d5:06:26:b9
+  networkConfig:
+    interfaces:
+    - name: enp2s0
+      type: ethernet
+      state: up
+      mac-address: 00:0b:d5:06:26:b8
+      ipv4:
+        enabled: true
+        address:
+        - ip: 192.168.111.82
+          prefix-length: 24
+        dhcp: false
+    - name: enp1s0
+      type: ethernet
+      state: up
+      ipv4:
+        enabled: false
+      ipv6:
+        enabled: false
+    - name: dummy0
+      type: dummy
+      state: up
+      ipv4:
+        enabled: false
+      ipv6:
+        enabled: false
+    - name: br0
+      type: linux-bridge
+      state: up
+      ipv4:
+        enabled: true
+        address:
+        - ip: 192.168.110.4
+          prefix-length: 24
+        dhcp: false
+      bridge:
+        port:
+        - name: dummy0
+    dns-resolver:
+      config:
+        server:
+        - 192.168.110.1
+    routes:
+      config:
+      - destination: 0.0.0.0/0
+        next-hop-address: 192.168.110.1
+        next-hop-interface: br0
+        table-id: 254
