@@ -1,0 +1,14 @@
+[Unit]
+Description=Mount CoreOS ISO
+Wants=network.target
+
+[Service]
+ExecStartPre=mkdir -p /media/iso
+ExecStart=/usr/local/bin/mountRegistry.sh
+Restart=on-failure
+RestartSec=10
+TimeoutStartSec=500
+TimeoutStopSec=300
+
+[Install]
+WantedBy=multi-user.target
